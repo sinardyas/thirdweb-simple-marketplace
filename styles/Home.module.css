@@ -136,8 +136,8 @@
   height: 3rem;
   min-width: 3rem;
   font-size: 1rem;
-  background: #e5e5ea;
-  background-image: linear-gradient(to left, #cc25b3 0%, #418dff 101.52%);
+  background: #FF0100;
+  /* background-image: linear-gradient(to left, #cc25b3 0%, #418dff 101.52%); */
   color: #fff;
   width: 180px;
   text-align: center;

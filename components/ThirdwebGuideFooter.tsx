@@ -2,7 +2,7 @@ import styles from "../../styles/Thirdweb.module.css";
 import React from "react";
 
 export default function ThirdwebGuideFooter() {
-  const url = "https://github.com/thirdweb-example/marketplace-next-ts";
+  const url = "https://meteor.id";
   return (
     <>
       <div
@@ -29,7 +29,7 @@ export default function ThirdwebGuideFooter() {
         }}
       >
         <img
-          src={"/github.png"}
+          src={"https://meteor.id/assets/logo.svg"}
           alt="github url"
           width={40}
           height={40}
