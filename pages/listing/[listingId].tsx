@@ -3,7 +3,7 @@ import {
   useMarketplace,
   useNetwork,
   useNetworkMismatch,
-  useListing,
+  useListing
 } from "@thirdweb-dev/react";
 import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import type { NextPage } from "next";
@@ -23,10 +23,11 @@ const ListingPage: NextPage = () => {
   // Hooks to detect user is on the right network and switch them if they are not
   const networkMismatch = useNetworkMismatch();
   const [, switchNetwork] = useNetwork();
+  const [loading, setLoading] = useState(false);
 
   // Initialize the marketplace contract
   const marketplace = useMarketplace(
-    "0x277C0FB19FeD09c785448B8d3a80a78e7A9B8952" // Your marketplace contract address here
+    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
   );
 
   // Fetch the listing from the marketplace contract
@@ -34,6 +35,8 @@ const ListingPage: NextPage = () => {
     marketplace,
     listingId
   );
+
+  console.log('listing :: ', listing?.quantity?.toLocaleString());
 
   // Store the bid amount the user entered into the bidding textbox
   const [bidAmount, setBidAmount] = useState<string>("");
@@ -50,7 +53,7 @@ const ListingPage: NextPage = () => {
     try {
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(4);
+        switchNetwork && switchNetwork(ChainId.Mumbai);
         return;
       }
 
@@ -82,14 +85,16 @@ const ListingPage: NextPage = () => {
 
   async function buyNft() {
     try {
+      setLoading(true);
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(4);
+        switchNetwork && switchNetwork(ChainId.Mumbai);
         return;
       }
 
       // Simple one-liner for buying the NFT
       await marketplace?.buyoutListing(listingId, 1);
+      setLoading(false);
       alert("NFT bought successfully!");
     } catch (error) {
       console.error(error);
@@ -131,42 +136,55 @@ const ListingPage: NextPage = () => {
               alignItems: "center",
             }}
           >
-            <button
+            {listing?.quantity?.toLocaleString() === '0' ? (
+              <button
               style={{ borderStyle: "none" }}
               className={styles.mainButton}
-              onClick={buyNft}
+              disabled
             >
-              Buy
+              Sold out
             </button>
-            <p style={{ color: "grey" }}>|</p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <input
-                type="text"
-                name="bidAmount"
-                className={styles.textInput}
-                onChange={(e) => setBidAmount(e.target.value)}
-                placeholder="Amount"
-                style={{ marginTop: 0, marginLeft: 0, width: 128 }}
-              />
-              <button
-                className={styles.mainButton}
-                onClick={createBidOrOffer}
-                style={{
-                  borderStyle: "none",
-                  background: "transparent",
-                  width: "fit-content",
-                }}
-              >
-                Make Offer
-              </button>
-            </div>
+            ) : (
+              <>
+                <button
+                  style={{ borderStyle: "none" }}
+                  className={styles.mainButton}
+                  onClick={buyNft}
+                  disabled={loading}
+                >
+                  {loading ? 'Buying...' : 'Buy'}
+                </button>
+                <p style={{ color: "grey" }}>|</p>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
+                  <input
+                    type="text"
+                    name="bidAmount"
+                    className={styles.textInput}
+                    onChange={(e) => setBidAmount(e.target.value)}
+                    placeholder="Amount"
+                    style={{ marginTop: 0, marginLeft: 0, width: 128 }}
+                  />
+                  <button
+                    className={styles.mainButton}
+                    onClick={createBidOrOffer}
+                    style={{
+                      borderStyle: "none",
+                      background: "transparent",
+                      width: "fit-content",
+                    }}
+                  >
+                    Make Offer
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

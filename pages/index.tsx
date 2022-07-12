@@ -3,6 +3,7 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import {
   MediaRenderer,
+  useListings,
   useActiveListings,
   useMarketplace,
 } from "@thirdweb-dev/react";
@@ -13,11 +14,13 @@ const Home: NextPage = () => {
 
   // Connect your marketplace smart contract here (replace this address)
   const marketplace = useMarketplace(
-    "0x277C0FB19FeD09c785448B8d3a80a78e7A9B8952" // Your marketplace contract address here
+    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
   );
 
   const { data: listings, isLoading: loadingListings } =
     useActiveListings(marketplace);
+
+    console.log(listings);
 
   return (
     <>

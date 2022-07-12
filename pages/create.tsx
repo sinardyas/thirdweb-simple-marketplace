@@ -2,6 +2,7 @@ import {
   useMarketplace,
   useNetwork,
   useNetworkMismatch,
+  ChainId
 } from "@thirdweb-dev/react";
 import { NATIVE_TOKEN_ADDRESS, TransactionResult } from "@thirdweb-dev/sdk";
 import type { NextPage } from "next";
@@ -16,15 +17,16 @@ const Create: NextPage = () => {
 
   // Connect to our marketplace contract via the useMarketplace hook
   const marketplace = useMarketplace(
-    "0x277C0FB19FeD09c785448B8d3a80a78e7A9B8952" // Your marketplace contract address here
+    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
   );
 
   // This function gets called when the form is submitted.
   async function handleCreateListing(e: any) {
     try {
+      console.log('networkMismatch :: ', networkMismatch);
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(4);
+        switchNetwork && switchNetwork(ChainId.Mumbai);
         return;
       }
 
@@ -46,6 +48,8 @@ const Create: NextPage = () => {
           tokenId.value,
           price.value
         );
+
+        console.log('transactionResult :: ', transactionResult);
       }
 
       // For Auction Listings:
