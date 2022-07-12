@@ -302,8 +302,9 @@
 .listingType:checked + label {
   border: 3px solid transparent;
   border-radius: 20px;
-  background: linear-gradient(to right, #262936, #262936),
-    linear-gradient(to right, #418dff, #cc25b3);
+  /* background: linear-gradient(to right, #262936, #262936),
+    linear-gradient(to right, #418dff, #cc25b3); */
+  background-color: #FF0100;
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
 }

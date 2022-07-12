@@ -3,7 +3,9 @@ import {
   useMarketplace,
   useNetwork,
   useNetworkMismatch,
-  useListing
+  useListing,
+  useAddress,
+  useMetamask
 } from "@thirdweb-dev/react";
 import { ChainId, ListingType, NATIVE_TOKENS } from "@thirdweb-dev/sdk";
 import type { NextPage } from "next";
@@ -14,6 +16,9 @@ import styles from "../../styles/Home.module.css";
 const ListingPage: NextPage = () => {
   // Next JS Router hook to redirect to other pages and to grab the query from the URL (listingId)
   const router = useRouter();
+  const address = useAddress();
+  const connectWithMetamask = useMetamask();
+
 
   // De-construct listingId out of the router.query.
   // This means that if the user visits /listing/0 then the listingId will be 0.
@@ -85,6 +90,12 @@ const ListingPage: NextPage = () => {
 
   async function buyNft() {
     try {
+      if (!address) {
+        connectWithMetamask();
+        return;
+      }
+
+
       setLoading(true);
       // Ensure user is on the correct network
       if (networkMismatch) {
