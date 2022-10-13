@@ -120,12 +120,12 @@ const Create: NextPage = () => {
       <div className={styles.container}>
         {/* Form Section */}
         <div className={styles.collectionContainer}>
-          <h1 className={styles.ourCollection}>
-            Upload your NFT to the marketplace:
+          <h1 className={`${styles.ourCollection} mt-8`}>
+            Sell your NFT to the marketplace
           </h1>
 
           {/* Toggle between direct listing and auction listing */}
-          <div className={styles.listingTypeContainer}>
+          {/* <div className={styles.listingTypeContainer}>
             <input
               type="radio"
               name="listingType"
@@ -147,7 +147,7 @@ const Create: NextPage = () => {
             <label htmlFor="auctionListing" className={styles.listingTypeLabel}>
               Auction Listing
             </label>
-          </div>
+          </div> */}
 
           {/* NFT Contract Address Field */}
           <input
@@ -178,7 +178,7 @@ const Create: NextPage = () => {
             className={styles.mainButton}
             style={{ marginTop: 32, borderStyle: "none" }}
           >
-            List NFT
+            Sell NFT
           </button>
         </div>
       </div>
