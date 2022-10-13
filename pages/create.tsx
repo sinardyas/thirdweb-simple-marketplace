@@ -42,7 +42,7 @@ const Create: NextPage = () => {
 
       // Depending on the type of listing selected, call the appropriate function
       // For Direct Listings:
-      if (listingType.value === "directListing") {
+      // if (listingType.value === "directListing") {
         transactionResult = await createDirectListing(
           contractAddress.value,
           tokenId.value,
@@ -50,16 +50,16 @@ const Create: NextPage = () => {
         );
 
         console.log('transactionResult :: ', transactionResult);
-      }
+      // }
 
       // For Auction Listings:
-      if (listingType.value === "auctionListing") {
-        transactionResult = await createAuctionListing(
-          contractAddress.value,
-          tokenId.value,
-          price.value
-        );
-      }
+      // if (listingType.value === "auctionListing") {
+      //   transactionResult = await createAuctionListing(
+      //     contractAddress.value,
+      //     tokenId.value,
+      //     price.value
+      //   );
+      // }
 
       // If the transaction succeeds, take the user back to the homepage to view their listing!
       if (transactionResult) {
