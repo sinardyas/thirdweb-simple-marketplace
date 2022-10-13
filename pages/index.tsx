@@ -68,7 +68,7 @@ const Home: NextPage = () => {
                     />
                     <h2 className={styles.nameContainer}>
                       <Link href={`/listing/${listing.id}`}>
-                        <a className={styles.name}>{listing.asset.name.substring(0, 22) + '...'}</a>
+                        <a className={styles.name}>{listing?.asset?.name?.substring(0, 22) + '...'}</a>
                       </Link>
                     </h2>
 
