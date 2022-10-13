@@ -136,7 +136,7 @@
   height: 3rem;
   min-width: 3rem;
   font-size: 1rem;
-  background: #FF0100;
+  background: #68CCF3;
   /* background-image: linear-gradient(to left, #cc25b3 0%, #418dff 101.52%); */
   color: #fff;
   width: 180px;
@@ -304,7 +304,7 @@
   border-radius: 20px;
   /* background: linear-gradient(to right, #262936, #262936),
     linear-gradient(to right, #418dff, #cc25b3); */
-  background-color: #FF0100;
+  background-color: #68CCF3;
   background-clip: padding-box, border-box;
   background-origin: padding-box, border-box;
 }

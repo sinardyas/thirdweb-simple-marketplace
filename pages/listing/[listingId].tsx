@@ -118,7 +118,7 @@ const ListingPage: NextPage = () => {
       <div className={styles.listingContainer}>
         <div className={styles.leftListing}>
           <MediaRenderer
-            src={listing.asset.image}
+            src={listing.asset.animation_url}
             className={styles.mainNftImage}
           />
         </div>

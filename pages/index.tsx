@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 
         <div style={{ marginTop: 32, marginBottom: 32 }}>
           <Link href="/create">
-            <a className={styles.mainButton} style={{ textDecoration: "none", background: '#68CCF3' }}>
+            <a className={styles.mainButton} style={{ textDecoration: "none" }}>
               Create A Listing
             </a>
           </Link>
@@ -58,7 +58,7 @@ const Home: NextPage = () => {
                     onClick={() => router.push(`/listing/${listing.id}`)}
                   >
                     <MediaRenderer
-                      src={listing.asset.image}
+                      src={listing.asset.animation_url}
                       style={{
                         borderRadius: 16,
                         // Fit the image to the container
