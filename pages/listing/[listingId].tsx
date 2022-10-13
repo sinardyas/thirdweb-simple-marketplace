@@ -32,7 +32,7 @@ const ListingPage: NextPage = () => {
 
   // Initialize the marketplace contract
   const marketplace = useMarketplace(
-    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
+    "0x2F45e691dA5Bf97e7A95F1518154505bd6297Ceb" // Your marketplace contract address here
   );
 
   // Fetch the listing from the marketplace contract
@@ -58,7 +58,7 @@ const ListingPage: NextPage = () => {
     try {
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(ChainId.Mumbai);
+        switchNetwork && switchNetwork(ChainId.Goerli);
         return;
       }
 
@@ -67,7 +67,7 @@ const ListingPage: NextPage = () => {
         await marketplace?.direct.makeOffer(
           listingId, // The listingId of the listing we want to make an offer for
           1, // Quantity = 1
-          NATIVE_TOKENS[ChainId.Rinkeby].wrapped.address, // Wrapped Ether address on Rinkeby
+          NATIVE_TOKENS[ChainId.Goerli].wrapped.address, // Wrapped Ether address on Rinkeby
           bidAmount // The offer amount the user entered
         );
       }
@@ -99,7 +99,7 @@ const ListingPage: NextPage = () => {
       setLoading(true);
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(ChainId.Mumbai);
+        switchNetwork && switchNetwork(ChainId.Goerli);
         return;
       }
 

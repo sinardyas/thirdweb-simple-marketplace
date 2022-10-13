@@ -17,7 +17,7 @@ const Create: NextPage = () => {
 
   // Connect to our marketplace contract via the useMarketplace hook
   const marketplace = useMarketplace(
-    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
+    "0x2F45e691dA5Bf97e7A95F1518154505bd6297Ceb" // Your marketplace contract address here
   );
 
   // This function gets called when the form is submitted.
@@ -26,7 +26,7 @@ const Create: NextPage = () => {
       console.log('networkMismatch :: ', networkMismatch);
       // Ensure user is on the correct network
       if (networkMismatch) {
-        switchNetwork && switchNetwork(ChainId.Mumbai);
+        switchNetwork && switchNetwork(ChainId.Goerli);
         return;
       }
 

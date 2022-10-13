@@ -1,7 +1,9 @@
 import { useAddress, useMetamask, useDisconnect } from "@thirdweb-dev/react";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 import styles from "../styles/Home.module.css";
+import logo from "../assets/planet_persib_logo.png";
 
 export default function Header() {
   // Helpful thirdweb hooks to connect and manage the wallet from metamask.
@@ -10,15 +12,15 @@ export default function Header() {
   const disconnectWallet = useDisconnect();
 
   return (
-    <div className={styles.header}>
+    <div className={styles.header} style={{ backgroundColor: '#00184D' }}>
       <div className={styles.left}>
         <div>
           <Link href="/" passHref role="button">
-            <img
-              src={`https://meteor.id/assets/icons/meteor-icon-red.svg`}
+            <Image
+              src={logo}
               alt="Thirdweb Logo"
-              width={135}
-              style={{ cursor: "pointer" }}
+              width={80}
+              height={80}
             />
           </Link>
         </div>
@@ -39,6 +41,7 @@ export default function Header() {
           <a
             className={styles.mainButton}
             onClick={() => connectWithMetamask()}
+            style={{ backgroundColor: '#68CCF3' }}
           >
             Connect Wallet
           </a>

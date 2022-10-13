@@ -3,18 +3,22 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import {
   MediaRenderer,
-  useListings,
-  useActiveListings,
+  useActiveListings, 
   useMarketplace,
 } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
+
+function truncateWithEllipses(text: string, max: number) 
+{
+    return text.substr(0,max-1)+(text.length>max?'&hellip;':''); 
+}
 
 const Home: NextPage = () => {
   const router = useRouter();
 
   // Connect your marketplace smart contract here (replace this address)
   const marketplace = useMarketplace(
-    "0xD8Fa33d6416ec0eEB6A1aE9dde7335B6477Df01e" // Your marketplace contract address here
+    "0x2F45e691dA5Bf97e7A95F1518154505bd6297Ceb" // Your marketplace contract address here
   );
 
   const { data: listings, isLoading: loadingListings } =
@@ -27,16 +31,13 @@ const Home: NextPage = () => {
       {/* Content */}
       <div className={styles.container}>
         {/* Top Section */}
-        <h1 className={styles.h1}>Meteor NFT Marketplace</h1>
-        <p className={styles.explain}>
-          List you NFT with low gas fee{" "}
-        </p>
+        <h1 className={styles.h1}>PlanetPersib Marketplace</h1>
 
         <hr className={styles.divider} />
 
         <div style={{ marginTop: 32, marginBottom: 32 }}>
           <Link href="/create">
-            <a className={styles.mainButton} style={{ textDecoration: "none" }}>
+            <a className={styles.mainButton} style={{ textDecoration: "none", background: '#68CCF3' }}>
               Create A Listing
             </a>
           </Link>
@@ -67,7 +68,7 @@ const Home: NextPage = () => {
                     />
                     <h2 className={styles.nameContainer}>
                       <Link href={`/listing/${listing.id}`}>
-                        <a className={styles.name}>{listing.asset.name}</a>
+                        <a className={styles.name}>{listing.asset.name.substring(0, 22) + '...'}</a>
                       </Link>
                     </h2>
 
